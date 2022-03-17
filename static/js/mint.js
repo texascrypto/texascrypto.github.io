@@ -127,6 +127,14 @@ function enable() {
       console.log(".");
   }
 }
+function disable() {
+  try {
+    document.getElementsByClassName("mint")[0].disabled = true;
+    document.getElementsByClassName("mint")[0].style.backgroundColor = "gray";
+  } catch(e) {
+      console.log(".");
+  }
+}
       function countDownTimer(date) {
       var elem = $('#countDown');
 
@@ -170,23 +178,24 @@ function enable() {
             // Seconds Left
             var sec = timeLeft % 60;
             // Combined DAYS+HOURS+MIN+SEC
-            if (mh > 2) {
-              elem.html("Minting is live, ends tomorrow at 12 PM CST!");
-              console.log("Minting live");
+            if (mh > 14) {
+              elem.html("Minting has come to an end! See you all at the events!");
+              console.log("Minting ended");
               counting = false;
-              enable()
-              setInterval(enable, 300);
+              disable()
+              setInterval(disable, 300);
             } else {
-              var timeString = "Pre-Sale begins in "+
+              var timeString = "Pre-Sale <b>ends in</b> "+
                               "<span class='hours'>"+hours+" hours "+"</span>"+
                               "<span class='minutes'>"+min+" minutes "+"</span>"+
                               "<span class='seconds'>"+sec+" seconds "+"</span>";
-              elem.html(timeString);
+                              elem.html(timeString);
+                              enable()
             }
         }
           }, 1000);
       }
 
       document.addEventListener('DOMContentLoaded', function() {
-        countDownTimer('March 16, 2021 12:00:00-05:00');
+        countDownTimer('March 17, 2021 12:00:00-05:00');
       }, false);
